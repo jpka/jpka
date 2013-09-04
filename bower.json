@@ -1,0 +1,14 @@
+{
+  "name": "jpka",
+  "version": "0.0.0",
+  "dependencies": {
+    "requirejs": "~2.1.4",
+    "json3": "~3.2.5",
+    "es5-shim": "~2.1.0",
+    "requirejs-plugins": "~1.0.2",
+    "isotope": "~1.5.25",
+    "jquery": "~1.10.2",
+    "angular": "~1.0.8"
+  },
+  "devDependencies": {}
+}
