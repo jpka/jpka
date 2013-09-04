@@ -1,0 +1,42 @@
+<div class="project-card-wrapper">
+  <div class="title">
+    <a ng-wrap-if="project.link" ng-href="{{project.link}}">
+      <div ng-if-switch="project.employer || project.note">
+        <span ng-if-true>{{project.name}}*</span>
+        <span ng-if-false>{{project.name}}</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="body" ng-switch="project.type">
+    <div ng-switch-when="repository">
+      <b>Language</b>
+      <p class="content">{{project.language}}</p>
+      <b>Description</b>
+      <p class="content">{{project.description}}</p>
+    </div>
+
+    <div ng-switch-default>
+      <b>Description</b>
+      <p class="content">{{project.description}}</p>
+      <b>Role</b>
+      <p class="content">{{project.role}}</p>
+      <b>Languages</b>
+      <p class="content">{{project.languages}}</p>
+      <b>Work done</b>
+      <ul class="content">
+        <li ng-repeat="task in project.tasks">
+          <a ng-wrap-if="task.link" ng-href="{{task.link}}">{{task.description}}</a>
+        </li>
+      </ul>
+      <div ng-if="project.employer">
+        <p class="note">* I worked on this project as an employee of
+          <a ng-href="{{project.employer.link}}">{{project.employer.name}}</a>
+        </p>
+      </div>
+      <div ng-if="project.note">
+        <p class="note">* {{project.note}}</p>
+      </div>
+    </div>
+  </div>
+</div>
