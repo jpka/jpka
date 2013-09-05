@@ -47,6 +47,10 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/{,* /}*.css'],
                 tasks: ['copy:styles', 'autoprefixer']
             },*/
+            templates: {
+                files: ['<%= yeoman.app %>/{components,views}/**/*.html'],
+                tasks: ['ngtemplates']
+            },
             livereload: {
                 options: {
                     livereload: LIVERELOAD_PORT
@@ -215,6 +219,7 @@ module.exports = function (grunt) {
                         main: '../../.tmp/application/main',
                         views: '../../.tmp/views',
                         components: '../../.tmp/components',
+                        templates: '../../.tmp/templates',
                         jquery: 'empty:',
                         isotope: 'empty:',
                         angular: 'empty:'
@@ -337,8 +342,7 @@ module.exports = function (grunt) {
                         '.htaccess',
                         '**/*.{webp,gif}',
                         'fonts/**/*.*',
-                        'components/**/*.html',
-                        'views/**/*.html',
+                        'templates.js',
                         '*.json',
                         'bower_components/jquery/jquery.min.js',
                         'bower_components/isotope/jquery.isotope.min.js',
@@ -360,7 +364,8 @@ module.exports = function (grunt) {
         concurrent: {
             server: [
                 'stylesBuild',
-                'coffee:dist'
+                'coffee:dist',
+                'ngtemplates'
                 //'copy:styles'
             ],
             test: [
@@ -370,6 +375,7 @@ module.exports = function (grunt) {
             dist: [
                 'coffee',
                 'stylesBuild',
+                'ngtemplates',
                 //'copy:styles',
                 'imagemin',
                 'svgmin',
@@ -396,6 +402,17 @@ module.exports = function (grunt) {
                     dest: '.tmp/styles',
                     ext: '.css'
                 }]
+            }
+        },
+        ngtemplates: {
+            jpka: {
+                options: {
+                    module: 'templates',
+                    base: 'app',
+                    prepend: ''
+                },
+                src: ['app/components/**/*.html', 'app/views/**/*.html'],
+                dest: '.tmp/templates.js'
             }
         }
     });
@@ -444,4 +461,6 @@ module.exports = function (grunt) {
         'test',
         'build'
     ]);
+
+    grunt.loadNpmTasks('grunt-angular-templates-amd');
 };

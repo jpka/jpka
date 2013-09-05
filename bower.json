@@ -8,7 +8,8 @@
     "requirejs-plugins": "~1.0.2",
     "isotope": "~1.5.25",
     "jquery": "~1.10.2",
-    "angular": "~1.0.8"
+    "angular": "~1.0.8",
+    "requirejs-text": "~2.0.10"
   },
   "devDependencies": {}
 }
