@@ -12,7 +12,7 @@ define ["angular", "json!data", "components/ngIsotope", "components/project-card
 
       $scope.projects = projects
 
-      $http.get("https://api.github.com/users/jpka/repos?type=owner")
+      $http.jsonp("https://api.github.com/users/jpka/repos?type=owner")
         .success(addRepos)
         .error -> $http.get("ghMockData.json").success addRepos
     ]
